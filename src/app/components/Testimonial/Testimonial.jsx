@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useSwipeable } from "react-swipeable";
 
 const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -12,6 +13,15 @@ const Testimonial = () => {
         "Sachhsoft has truly transformed the way we do business. Their innovative solutions have helped us reach new heights.",
       author: "John Doe",
       role: "CEO, XYZ Company",
+      img: "https://assets.lummi.ai/assets/QmVuyaCTASHonXegRPnVh856MrGU5KHQpYmiRN5KbGtqtH?auto=format&w=1500",
+    },
+    {
+      id: 2,
+      heading: "Exceptional service",
+      content:
+        "The team at Sachhsoft provides exceptional service and support. They are our go-to for all tech solutions.",
+      author: "Jane Smith",
+      role: "CTO, ABC Corp",
       img: "https://assets.lummi.ai/assets/QmVuyaCTASHonXegRPnVh856MrGU5KHQpYmiRN5KbGtqtH?auto=format&w=1500",
     },
     {
@@ -38,19 +48,30 @@ const Testimonial = () => {
     );
   };
 
+  const isMobile = window.innerWidth < 1024;
+
+  const handlers = isMobile
+    ? useSwipeable({
+        onSwipedLeft: handleNext,
+        onSwipedRight: handlePrev,
+        preventDefaultTouchmoveEvent: true,
+        trackMouse: true,
+      })
+    : {};
+
   return (
-    <div className="bg-[#150b1d] pt-24">
-      <div className="max-w-7xl  mx-auto">
-        <div className="grid grid-cols-3">
+    <div className="bg-[#150b1d]  lg:pt-40">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-3">
           <div className="col-span-2">
-            <h1 className="lg:text-lg text-xs font-medium text-gray-400 uppercase tracking-wider">
+            <h1 className="lg:text-lg text-center lg:text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
               Testimonials
             </h1>
-            <h1 className="mt-3 heading text-4xl text-gray-100">
+            <h1 className="mt-3 heading text-center lg:text-left text-2xl lg:text-4xl text-gray-100">
               Hear from our valued partners
             </h1>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1 hidden lg:block">
             <div className="flex justify-end items-center h-full">
               <button
                 onClick={handlePrev}
@@ -66,9 +87,9 @@ const Testimonial = () => {
                   <path
                     d="M6 12H18M6 12L11 7M6 12L11 17"
                     stroke="#ffffff"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </button>
@@ -85,9 +106,9 @@ const Testimonial = () => {
                   <path
                     d="M6 12H18M18 12L13 7M18 12L13 17"
                     stroke="#ffffff"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   ></path>
                 </svg>
               </button>
@@ -95,22 +116,26 @@ const Testimonial = () => {
           </div>
         </div>
       </div>
-      <div className="relative ml-20 mt-10 overflow-hidden">
+      <div
+        className={`relative lg:ml-20 mt-10 overflow-hidden ${isMobile ? '' : 'hidden lg:flex'}`}
+        {...handlers}
+      >
         <div
           className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 65}%)` }}
+          style={{
+            transform: `translateX(-${currentIndex * (isMobile ? 100 : 33)}%)`,
+          }}
         >
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="flex-shrink-0 p-6"
-              style={{ width: "60vw", marginRight: "20px" }}
+              className={`flex-shrink-0 ${isMobile ? 'w-full' : 'lg:w-[60vw]'} p-6`}
             >
               <div className="bg-[#211033] p-6 h-auto rounded-3xl">
                 <h1 className="text-lg heading text-white">
                   {testimonial.heading}
                 </h1>
-                <p className="mt-6 text-gray-200 tracking-wider text-xl italic small">
+                <p className="mt-6 text-gray-200 tracking-wider text-md lg:text-xl italic small">
                   {testimonial.content}
                 </p>
                 <div className="mt-8 flex items-center">
@@ -133,6 +158,19 @@ const Testimonial = () => {
           ))}
         </div>
       </div>
+      {isMobile && (
+        <div className="flex justify-center mt-4">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 mx-1 rounded-full ${
+                currentIndex === index ? 'bg-[#9747ff]' : 'bg-gray-400'
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
