@@ -17,12 +17,12 @@ const Navbar = () => {
             href="https://flowbite.com/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <h1 className="heading text-white text-2xl">Sachhsoft</h1>
+            <h1 className="heading uppercase text-white text-2xl">Sachhsoft</h1>
           </a>
           <div className="flex md:order-2 space-x-3 rtl:space-x-reverse">
             <button
               type="button"
-              className="text-white small bg-[#8d49e4] font-medium rounded-3xl text-md px-5 py-2 text-center hidden md:inline-block"
+              className="text-white small bg-[#8d49e4] hover:bg-[#995beb] font-medium rounded-3xl text-md px-5 py-2 text-center hidden md:inline-block"
             >
               Let's talk
               <img
@@ -84,7 +84,7 @@ const Navbar = () => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-1 text-gray-50 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  className="block py-2 pl-1 text-gray-50 rounded hover:text-gray-300 "
                 >
                   About
                 </a>
@@ -92,31 +92,28 @@ const Navbar = () => {
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-1 text-gray-50 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
+                  className="block py-2 pl-1 text-gray-50 rounded hover:text-gray-300 "                >
                   Services
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-1 text-gray-50 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
+                  className="block py-2 pl-1 text-gray-50 rounded hover:text-gray-300 "                >
                   Blogs
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="block py-2 pl-1 text-gray-50 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
+                  className="block py-2 pl-1 text-gray-50 rounded hover:text-gray-300"                >
                   Careers
                 </a>
               </li>
               <li className="block md:hidden">
                 <button
                   type="button"
-                  className="text-white bg-[#8d49e4] font-medium rounded-3xl text-md px-5 py-2 text-center w-full mt-2"
+                  className="text-white bg-[#8d49e4] hover:bg-[#995beb] font-medium rounded-3xl text-md px-5 py-2 text-center w-full mt-2"
                 >
                   Let's talk
                   <img

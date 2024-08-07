@@ -20,7 +20,7 @@ const Hero = () => {
                 Expert IT consulting tailored for empowering
                 <br className="lg:block hidden" /> your technical needs
               </p>
-              <button className="mt-12 text-white small bg-[#8d49e4] font-medium rounded-3xl text-md px-5 py-3 text-center">
+              <button className="mt-12 text-white small bg-[#8d49e4] hover:bg-[#995beb] font-medium rounded-3xl text-md px-5 py-3 text-center">
                 Get in touch
                 <img
                   src="/buttonarrow.svg"

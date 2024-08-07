@@ -195,7 +195,7 @@ const Blog = () => {
           <div className="flex  items-center justify-center mt-10">
           <button
               type="button"
-              className="text-white small uppercase border-2 border-[#8d49e4] font-medium rounded-3xl text-md px-4 py-2 text-center "
+              className="text-white small uppercase border-2 border-[#8d49e4] hover:bg-[#8d49e4] duration-500 transition font-medium rounded-3xl text-md px-4 py-2 text-center "
             >
              View All
               <img
