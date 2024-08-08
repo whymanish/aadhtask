@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import { useMediaQuery } from "react-responsive";
 
 const Blog = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,16 +43,16 @@ const Blog = () => {
     );
   };
 
-  const isMobile = window.innerWidth < 1024;
+  // Detect if the screen is mobile size using react-responsive
+  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
-  const handlers = isMobile
-    ? useSwipeable({
-        onSwipedLeft: handleNext,
-        onSwipedRight: handlePrev,
-        preventDefaultTouchmoveEvent: true,
-        trackMouse: true,
-      })
-    : {};
+  const handlers = useSwipeable({
+    onSwipedLeft: handleNext,
+    onSwipedRight: handlePrev,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+    enableMouseEvents: isMobile,
+  });
 
   return (
     <div className="bg-[#150b1d] py-20 lg:py-40">
@@ -192,12 +193,12 @@ const Blog = () => {
               ))}
             </div>
           )}
-          <div className="flex  items-center justify-center mt-10">
-          <button
+          <div className="flex items-center justify-center mt-10">
+            <button
               type="button"
-              className="text-white small uppercase border-2 border-[#8d49e4] hover:bg-[#8d49e4] duration-500 transition font-medium rounded-3xl text-md px-4 py-2 text-center "
+              className="text-white small uppercase border-2 border-[#8d49e4] hover:bg-[#8d49e4] duration-500 transition font-medium rounded-3xl text-md px-4 py-2 text-center"
             >
-             View All
+              View All
               <img
                 src="/buttonarrow.svg"
                 alt="arrow"

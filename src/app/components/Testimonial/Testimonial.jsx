@@ -1,9 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import { useMediaQuery } from "react-responsive";
 
 const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
 
   const testimonials = [
     {
@@ -25,15 +28,14 @@ const Testimonial = () => {
       img: "https://assets.lummi.ai/assets/QmVuyaCTASHonXegRPnVh856MrGU5KHQpYmiRN5KbGtqtH?auto=format&w=1500",
     },
     {
-      id: 2,
-      heading: "Exceptional service",
+      id: 3,
+      heading: "Outstanding support",
       content:
-        "The team at Sachhsoft provides exceptional service and support. They are our go-to for all tech solutions.",
-      author: "Jane Smith",
-      role: "CTO, ABC Corp",
+        "We received outstanding support from Sachhsoft. Their team is always available to help us with our needs.",
+      author: "Bob Johnson",
+      role: "COO, DEF Ltd",
       img: "https://assets.lummi.ai/assets/QmVuyaCTASHonXegRPnVh856MrGU5KHQpYmiRN5KbGtqtH?auto=format&w=1500",
     },
-    // Add more testimonials as needed
   ];
 
   const handlePrev = () => {
@@ -48,8 +50,6 @@ const Testimonial = () => {
     );
   };
 
-  const isMobile = window.innerWidth < 1024;
-
   const handlers = isMobile
     ? useSwipeable({
         onSwipedLeft: handleNext,
@@ -60,7 +60,7 @@ const Testimonial = () => {
     : {};
 
   return (
-    <div className="bg-[#150b1d]  lg:pt-40">
+    <div className="bg-[#150b1d] lg:pt-40">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-3">
           <div className="col-span-2">
@@ -74,7 +74,7 @@ const Testimonial = () => {
           <div className="col-span-1 hidden lg:block">
             <div className="flex justify-end items-center h-full">
               <button
-                onClick={handlePrev}
+                onClick={handleNext}
                 className="text-gray-400 border rounded-full p-4"
               >
                 <svg
@@ -94,7 +94,7 @@ const Testimonial = () => {
                 </svg>
               </button>
               <button
-                onClick={handleNext}
+                onClick={handlePrev}
                 className="text-gray-400 ml-4 border rounded-full p-4"
               >
                 <svg
@@ -117,7 +117,7 @@ const Testimonial = () => {
         </div>
       </div>
       <div
-        className={`relative lg:ml-20 mt-10 overflow-hidden ${isMobile ? '' : 'hidden lg:flex'}`}
+        className={`relative max-w-7xl mx-auto mt-10 overflow-hidden ${isMobile ? "" : "hidden lg:flex"}`}
         {...handlers}
       >
         <div
@@ -129,12 +129,10 @@ const Testimonial = () => {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className={`flex-shrink-0 ${isMobile ? 'w-full' : 'lg:w-[60vw]'} p-6`}
+              className={`flex-shrink-0 ${isMobile ? "w-full" : "lg:w-[60vw]"} pt-6 px-3 lg:px-0 lg:pr-6`}
             >
-              <div className="bg-[#211033] p-6 h-auto rounded-3xl">
-                <h1 className="text-lg heading text-white">
-                  {testimonial.heading}
-                </h1>
+              <div className="bg-[#211033] p-6 h-72 flex flex-col justify-center rounded-3xl">
+                <h1 className="text-lg heading text-white">{testimonial.heading}</h1>
                 <p className="mt-6 text-gray-200 tracking-wider text-md lg:text-xl italic small">
                   {testimonial.content}
                 </p>
@@ -148,9 +146,7 @@ const Testimonial = () => {
                     <h1 className="text-sm small text-gray-100">
                       {testimonial.author}
                     </h1>
-                    <p className="text-gray-400 text-sm small">
-                      {testimonial.role}
-                    </p>
+                    <p className="text-gray-400 text-sm small">{testimonial.role}</p>
                   </div>
                 </div>
               </div>
@@ -165,7 +161,7 @@ const Testimonial = () => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-3 h-3 mx-1 rounded-full ${
-                currentIndex === index ? 'bg-[#9747ff]' : 'bg-gray-400'
+                currentIndex === index ? "bg-[#9747ff]" : "bg-gray-400"
               }`}
             />
           ))}

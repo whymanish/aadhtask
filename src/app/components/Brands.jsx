@@ -1,9 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const Brands = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detect if the screen is mobile size using react-responsive
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  
   const logos = [
     "/spotify.svg",
     "/cocacola.svg",
@@ -13,20 +17,9 @@ const Brands = () => {
     "/amazon.svg",
     "/ola.svg",
   ];
+  
   const totalSlides = logos.length;
   const visibleSlides = isMobile ? 1 : 4; // 1 logo on mobile, 4 on large screens
-
-  // Check if the screen is mobile size
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const slideLeft = () => {
     setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev));
@@ -55,7 +48,7 @@ const Brands = () => {
                 className="flex transition-transform duration-700"
                 style={{
                   transform: `translateX(-${
-                    isMobile 
+                    isMobile
                       ? currentSlide * 14.2 // Mobile version
                       : currentSlide * (100 / visibleSlides) // Large screen version
                   }%)`,
