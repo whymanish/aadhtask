@@ -70,7 +70,8 @@ const Brands = () => {
           </div>
           <button
             className="absolute left-0 top-2/3 transform -translate-y-1/2 text-white p-2 rounded-full"
-            onClick={slideLeft}
+           
+            onClick={slideRight}
           >
             <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
               <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" />
@@ -78,7 +79,7 @@ const Brands = () => {
           </button>
           <button
             className="absolute right-0 top-2/3 transform -translate-y-1/2 text-white p-2 rounded-full"
-            onClick={slideRight}
+            onClick={slideLeft}
           >
             <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
               <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
